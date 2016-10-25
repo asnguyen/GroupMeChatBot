@@ -6,7 +6,7 @@ cool        = require('cool-ascii-faces');
 bot         = require('./bot.js');
 
 router = new director.http.Router({
-  '@alfred' : {
+  '/' : {
     post: bot.respond,
     get: ping
   }
