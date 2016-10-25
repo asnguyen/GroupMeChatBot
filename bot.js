@@ -5,9 +5,10 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/test$/;
+      botRegex1 = /^\/test$/,
+      botRegex2 = /^\/ hello alfred$/;
 
-  if(request.text && botRegex.test(request.text)) {
+  /*if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
     //postMessage();
     greeting();
@@ -16,10 +17,31 @@ function respond() {
     console.log("don't care");
     this.res.writeHead(200);
     this.res.end();
+  }*/
+
+  if(request.text)
+  {
+    this.res.writeHead(200);
+    if(botRegex1.test(request.text))
+    {
+      postMessage();
+    }
+    if(botRegex2.test(request.text))
+    {
+      greeting();
+    }
+    this.res.end();
   }
+  else
+  {
+    console.log("don't care");
+    this.res.writeHead(200);
+    this.res.end();
+  }
+
 }
 
-function greeting ()
+function greeting()
 {
   var botResponse, options, body, botReq;
 
